@@ -1,28 +1,25 @@
 const connection = require('../config');
 
 
-function allImages() {
+function allApartmentsImages() {
     return new Promise((resolve, reject) => {
         connection.query('Select * from images',(error, results, fields) => {
             if (error) {
-                console.log("error images", error)
                 reject(error);
                 return;
             }
-            console.log("results images", results)
             resolve(results);
         });
     });
 }
-function ImagesById(apartmentId) {
+
+function imageByApartmentId(apartmentId) {
     return new Promise((resolve, reject) => {
         connection.query('Select * from images Where apartment_id = ?',[apartmentId], (error, results, fields) => {
             if (error) {
-                console.log("error images", error)
                 reject(error);
                 return;
             }
-            console.log("results images", results)
             resolve(results);
         });
     });
@@ -30,6 +27,6 @@ function ImagesById(apartmentId) {
 
 
 module.exports = {
-    allImages,
-    ImagesById
+    allApartmentsImages,
+    imageByApartmentId
 };

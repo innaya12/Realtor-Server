@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const connection = require('../db/config');
 
-var copyOrderList = require('./orders').ordersList;
+var copyOrderList = require('./ordersExample').ordersList;
 var usersList = [{id:1, name:'Shahar', age:78},{id:2, name:'Yusuf', age:20}]
 
 /* GET users listing. */
