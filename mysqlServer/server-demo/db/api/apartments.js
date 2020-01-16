@@ -15,7 +15,7 @@ function getAll({property_type,user_id, address, city_id, price, number_of_room,
                                         .sale_status(sale_status)
                                         .build();
         connection.query(query , [...params,page,size], (error, results, fields) => {
-            console.log("my query", query)
+            // console.log("my query", query)
             if (error) {
                 reject(error);
                 return;
