@@ -1,7 +1,7 @@
 const connection = require('../config');
 const query = 'insert into users (role_id, first_name, last_name, email, password, phone, status) values (2, ?, ?, ?, 123, ?,1)'
 
-function sendUser(firstName, lastName,email, password, phone){
+function addUser(firstName, lastName,email, password, phone){
     return new Promise((resolve, reject) => {
         connection.query(query, [firstName, lastName,email, password, phone], (error, results) => {
             if (error) {
@@ -16,4 +16,4 @@ function sendUser(firstName, lastName,email, password, phone){
     });
 }
 
-module.exports = {sendUser}
+module.exports = {addUser}

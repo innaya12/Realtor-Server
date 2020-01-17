@@ -1,7 +1,7 @@
 const connection = require('../config');
 const Builder = require('../api/builder');
 
-function getAll({property_type,user_id, address, city_id, price, number_of_room, number_of_bath,sqft,sale_status, page = 1, size = 20}) {
+function getAll({property_type,user_id, address, city_id, price, number_of_room, number_of_bath,sqft,sale_status, page = 1, size = 28}) {
     return new Promise((resolve, reject) => {
         const {query,params} = Builder.allApartments(page, size)
                                         .property_type(property_type)
