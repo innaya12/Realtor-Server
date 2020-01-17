@@ -1,9 +1,12 @@
 const connection = require('../config');
+const loginQuery = 'select * from users where email = ? and password = ?';
+const getUsersQuery = 'Select * from users';
 
 // currently not in use- saved for future development 
+
 function getAllUsers(){
     return new Promise((resolve, reject) => {
-        connection.query('Select * from users',(error, results, fields) => {
+        connection.query(getUsersQuery ,(error, results, fields) => {
             if (error) {
                 reject(error);
                 return;
@@ -13,10 +16,10 @@ function getAllUsers(){
     });
 }
 
+
 function checkLogin(email, passwordHashed){
     return new Promise((resolve, reject) => {
-        const query = 'select * from users where email = ? and password = ?'
-        connection.query(query, [email, passwordHashed], (error, results) => {
+            connection.query(loginQuery, [email, passwordHashed], (error, results) => {
             if (error) {
                 reject(error);
                 return;

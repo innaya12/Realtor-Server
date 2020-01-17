@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 const crypto = require('crypto');
-var users = require('../db/api/users')
+var login = require('../db/api/login')
 
 // currently not in use- saved for future development 
 
 router.get('/', function(req, res, next){
-    users.getAllUsers(req.query)
+    login.getAllUsers(req.query)
     .then(apartment => res.status(200).json(apartment))
     .catch(error => res.status(500).json({error: error.message}))
 });
@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
     }else{
         let cryptPassword = crypto.pbkdf2Sync(password, 'realtorrocks', 100000, 64, 'sha512'); 
         const passwordHashed = cryptPassword.toString('base64');
-        users.checkLogin(email, passwordHashed)
+        login.checkLogin(email, passwordHashed)
         .then(([user]) => {
             res.cookie('auth', JSON.stringify(user), {maxAge: 1000* 60* 60* 24* 7});
             console.log("req.cookies", req.cookies);   
