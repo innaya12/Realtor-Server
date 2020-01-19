@@ -6,8 +6,8 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/indexRoute');
 var addapartmentRouter = require('./routes/addApartmentRouter');
-var apartmentsRouter = require('./routes/apartmentsRoute');
-var imagesRouter = require('./routes/imagesRoute');
+var apartmentsRouter = require('./routes/getApartmentsRoute');
+var getImagesRouter = require('./routes/getImagesRoute');
 var loginRouter = require('./routes/loginRouter');
 var signupRouter = require('./routes/signupRouter');
 var app = express();
@@ -26,7 +26,7 @@ app.use('/apartments',(req, res, next) => {
     res.cookie('my-cookie', JSON.stringify({userId: 1234, role:'user'}), {maxAge: 1000 *60 *60 *24});
     next();
 }, apartmentsRouter);
-app.use('/images', imagesRouter);
+app.use('/images', getImagesRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 
