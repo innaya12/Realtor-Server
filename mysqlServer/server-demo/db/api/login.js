@@ -24,7 +24,7 @@ function checkLogin(email, passwordHashed){
                 reject(error);
                 return;
             }
-            resolve(results);
+            resolve(results[0]);
         });
     });
 }

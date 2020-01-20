@@ -5,12 +5,9 @@ function addUser(firstName, lastName,email, password, phone){
     return new Promise((resolve, reject) => {
         connection.query(query, [firstName, lastName,email, password, phone], (error, results) => {
             if (error) {
-                console.log("error", error)
-
                 reject(error);
                 return;
             }
-            console.log("results", results)
             resolve(results);
         });
     });
