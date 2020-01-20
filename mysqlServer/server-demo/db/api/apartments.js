@@ -1,5 +1,36 @@
 const connection = require('../config');
 const Builder = require('../api/builder');
+const queryAddApartment = 'insert into apartments (user_id, address, city_id, price,number_of_room, number_of_bath, sqft, description, sale_status, availability, property_type, main_image,status) values (3, ?, 1102251,?, ?, ?, ?, ?, 1, 1, 1, ?, 1)'
+const queryAddimages = 'insert into users (role_id, first_name, last_name, email, password, phone, status) values (2, ?, ?, ?, 123, ?,1)'
+
+function addApartment(address, price, number_of_room, number_of_bath, sqft, description, main_image){
+    return new Promise((resolve, reject) => {
+        // connection.query(fakeapquery, (error, results) => {
+        connection.query(queryAddApartment, [address, price, number_of_room, number_of_bath, sqft, description, main_image], (error, results) => {
+            if (error) {
+                // console.log("error", error)
+                reject(error);
+                return;
+            }
+            // console.log("results", results)
+            resolve(results);
+        });
+    });
+}
+
+function addImages(firstName, lastName,email, password, phone){
+    return new Promise((resolve, reject) => {
+        connection.query(queryAddimages, [firstName, lastName,email, password, phone], (error, results) => {
+            if (error) {
+                // console.log("error", error)
+                reject(error);
+                return;
+            }
+            // console.log("results", results)
+            resolve(results);
+        });
+    });
+}
 
 function getAll({property_type,user_id, address, city_id, price, number_of_room, number_of_bath,sqft,sale_status, page = 1, size = 28}) {
     return new Promise((resolve, reject) => {
@@ -38,8 +69,9 @@ function byId(apartmentId) {
     });
 }
 
-
 module.exports = {
     getAll,
-    byId
+    byId,
+    addApartment,
+     addImages
 };
