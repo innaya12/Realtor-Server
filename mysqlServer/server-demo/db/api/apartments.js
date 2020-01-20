@@ -14,12 +14,13 @@ function getAll({property_type,user_id, address, city_id, price, number_of_room,
                                         .sqft(sqft)
                                         .sale_status(sale_status)
                                         .build();
-        connection.query(query , [...params,page,size], (error, results, fields) => {
-            // console.log("my query", query)
+        connection.query(query, [...params,page,size], (error, results, fields) => {
+            // console.log("final query", query)
             if (error) {
                 reject(error);
                 return;
             }
+            // console.log("res builder res", results)
             resolve(results);
         });
     });

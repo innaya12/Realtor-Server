@@ -50,8 +50,13 @@ class ApartmentsBuilder{
     }
     number_of_bath = (number_of_bath) => {
         if(number_of_bath){
+            // console.log("this.paramsbefore", this.params)
             this.params.push(number_of_bath);
+            // console.log("this.paramsafter", this.params)
+            // console.log("this.querybefore", this.query)
             this.query += ' and number_of_bath = ?';
+            // console.log("this.queryafter", this.query)
+
         }
         return this;  
     }
@@ -72,7 +77,9 @@ class ApartmentsBuilder{
 
     build = () => {
         this.query += ` limit ${(this.page-1)*this.size}, ${this.size};`
+        // console.log("query", this.query)
         // this.query += ` limit ${(this.page-1)*this.size}, 200;`
+        // console.log("all",  {query: this.query, params: this.params})
         return {query: this.query, params: this.params};
     }
 }
