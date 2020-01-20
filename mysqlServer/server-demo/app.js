@@ -5,11 +5,10 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var indexRouter = require('./routes/indexRoute');
-var addapartmentRouter = require('./routes/addApartmentRouter');
-var apartmentsRouter = require('./routes/getApartmentsRoute');
-var citiesRouter = require('./routes/getCitiesRoute');
-var countriesRouter = require('./routes/getCountriesRoute');
-var getImagesRouter = require('./routes/getImagesRoute');
+var apartmentsRouter = require('./routes/apartmentsRoute');
+var citiesRouter = require('./routes/citiesRoute');
+var countriesRouter = require('./routes/countriesRoute');
+var getImagesRouter = require('./routes/imagesRoute');
 var loginRouter = require('./routes/loginRouter');
 var signupRouter = require('./routes/signupRouter');
 var app = express();
@@ -23,17 +22,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({origin:'http://localhost:3000', credentials: true}));
 
 app.use('/', indexRouter);
-app.use('/addapartment', addapartmentRouter);
 app.use('/apartments',(req, res, next) => {
-    res.cookie('my-cookie', JSON.stringify({userId: 1234, role:'user'}), {maxAge: -1});
+    // res.cookie('my-cookie', JSON.stringify({userId: 1234, role:'user'}), {maxAge: -1});
     next();
 }, apartmentsRouter);
 app.use('/cities', citiesRouter);
 app.use('/countries', countriesRouter);
-
 app.use('/images', getImagesRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+
+// app.use('/apartments',(req, res, next) => {
+//     res.cookie('my-cookie', JSON.stringify({userId: 1234, role:'user'}), {maxAge: -1});
+//     next();
+// }, apartmentsRouter);
 
 module.exports = app;
 
