@@ -24,8 +24,8 @@ router.get('/:apartmentId', function(req, res, next){
     .catch(error => res.status(500).json({error: error.message}))
 });
 
-router.post('/', function(req, res, next) {
-    // router.post('/', isUser, function(req, res, next) {
+// router.post('/', function(req, res, next) {
+router.post('/', isUser, function(req, res, next) {
         const {address, price, number_of_room, number_of_bath, sqft, description, main_image} = req.body;
         if(!address || !price || !number_of_room || !number_of_bath || !sqft || !description || !main_image) {
             res.send('all fields are required');

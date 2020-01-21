@@ -22,36 +22,34 @@ function addImages(firstName, lastName,email, password, phone){
     return new Promise((resolve, reject) => {
         connection.query(queryAddimages, [firstName, lastName,email, password, phone], (error, results) => {
             if (error) {
-                // console.log("error", error)
                 reject(error);
                 return;
             }
-            // console.log("results", results)
             resolve(results);
         });
     });
 }
 
-function getAll({property_type,user_id, address, city_id, price, number_of_room, number_of_bath,sqft,sale_status, page = 1, size = 28}) {
+function getAll({property_type,user_id, address, city_id, min_price, max_price, number_of_room, number_of_bath,sqft,sale_status, page = 1, size = 28}) {
     return new Promise((resolve, reject) => {
+        console.log("city id builder", city_id)
         const {query,params} = Builder.allApartments(page, size)
                                         .property_type(property_type)
                                         .user_id(user_id)
                                         .address(address)
                                         .city_id(city_id)
-                                        .price(price)
+                                        .price(min_price, max_price)
                                         .number_of_room(number_of_room)
                                         .number_of_bath(number_of_bath)
                                         .sqft(sqft)
                                         .sale_status(sale_status)
                                         .build();
         connection.query(query, [...params,page,size], (error, results, fields) => {
-            // console.log("final query", query)
+            console.log("final query", query)
             if (error) {
                 reject(error);
                 return;
             }
-            // console.log("res builder res", results)
             resolve(results);
         });
     });

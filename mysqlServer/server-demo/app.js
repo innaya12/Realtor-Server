@@ -9,6 +9,7 @@ var apartmentsRouter = require('./routes/apartmentsRoute');
 var citiesRouter = require('./routes/citiesRoute');
 var countriesRouter = require('./routes/countriesRoute');
 var getImagesRouter = require('./routes/imagesRoute');
+var uploadimagesRouter = require('./routes/uploadimagesRouter');
 var loginRouter = require('./routes/loginRouter');
 var signupRouter = require('./routes/signupRouter');
 var app = express();
@@ -29,6 +30,7 @@ app.use('/apartments',(req, res, next) => {
 app.use('/cities', citiesRouter);
 app.use('/countries', countriesRouter);
 app.use('/images', getImagesRouter);
+app.use('/uploadimages', uploadimagesRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 
