@@ -15,4 +15,6 @@ router.get('/:apartmentId', function(req, res, next){
     .catch(error => res.status(500).json({error: error.message}))
 });
 
+
+
 module.exports = router;

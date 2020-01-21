@@ -30,14 +30,18 @@ class ApartmentsBuilder{
     city_id = (city_id) => {
         if(city_id){
             this.params.push(city_id);
-            this.query += ' and City = ?';
+            this.query += ' and city_id = ?';
         }
         return this;
     };
-    price = (price) => {
-        if(price){
-            this.params.push(price);
-            this.query += ' and price = ?';
+    price = (min_price, max_price) => {
+        if(min_price){
+            this.params.push(min_price);
+            this.query += ' and price BETWEEN ?';
+        }
+        if(max_price){
+            this.params.push(max_price);
+            this.query += ' and ?';
         }
         return this;    
     }
@@ -50,13 +54,8 @@ class ApartmentsBuilder{
     }
     number_of_bath = (number_of_bath) => {
         if(number_of_bath){
-            // console.log("this.paramsbefore", this.params)
             this.params.push(number_of_bath);
-            // console.log("this.paramsafter", this.params)
-            // console.log("this.querybefore", this.query)
             this.query += ' and number_of_bath = ?';
-            // console.log("this.queryafter", this.query)
-
         }
         return this;  
     }
@@ -77,9 +76,7 @@ class ApartmentsBuilder{
 
     build = () => {
         this.query += ` limit ${(this.page-1)*this.size}, ${this.size};`
-        // console.log("query", this.query)
         // this.query += ` limit ${(this.page-1)*this.size}, 200;`
-        // console.log("all",  {query: this.query, params: this.params})
         return {query: this.query, params: this.params};
     }
 }
