@@ -1,6 +1,5 @@
 const connection = require('../config');
 
-
 function allApartmentsImages() {
     return new Promise((resolve, reject) => {
         connection.query('Select * from images',(error, results, fields) => {

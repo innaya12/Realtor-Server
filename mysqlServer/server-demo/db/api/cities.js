@@ -1,7 +1,6 @@
 const connection = require('../config');
 const query = 'SELECT * FROM cities where country_id = ?';
 
-
 function cityByCountryId(countryId) {
     return new Promise((resolve, reject) => {
         connection.query(query,[countryId], (error, results, fields) => {
@@ -14,7 +13,6 @@ function cityByCountryId(countryId) {
     });
 }
 
-
 function getAll() {
     return new Promise((resolve, reject) => {
         connection.query('Select * from cities',(error, results, fields) => {
@@ -26,7 +24,6 @@ function getAll() {
         });
     });
 }
-
 
 module.exports = {
     getAll,

@@ -1,6 +1,5 @@
 const connection = require('../config');
 
-
 function getAll() {
     return new Promise((resolve, reject) => {
         connection.query('Select * from countries',(error, results, fields) => {

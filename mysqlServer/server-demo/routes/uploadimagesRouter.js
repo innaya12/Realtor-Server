@@ -13,12 +13,9 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage: storage})
 // .array('df', 6)
-
 router.post('/', upload.single('files'), function(req, res, next) {
-    console.log(req.file)
-    console.log("here under uploadimages")
     try {
-        res.send("image uploaded!!!")
+        res.send("image uploaded!")
     }catch(err){
         console.log("image is stuck")
     }
