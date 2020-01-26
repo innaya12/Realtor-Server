@@ -4,7 +4,6 @@ const crypto = require('crypto');
 var signup = require('../db/api/signup')
 
 // get data from user and sent to mysql db in a router.post as sql insert statment
-
 router.post('/', async (req, res, next) =>{
     const {firstName, lastName,email, password, phone} = req.body;
     if(!firstName || !lastName || !email || !password || !phone) {

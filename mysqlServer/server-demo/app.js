@@ -6,6 +6,7 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/indexRoute');
 var apartmentsRouter = require('./routes/apartmentsRoute');
+var addapartmentRouter = require('./routes/addapartmentRouter')
 var citiesRouter = require('./routes/citiesRoute');
 var countriesRouter = require('./routes/countriesRoute');
 var getImagesRouter = require('./routes/imagesRoute');
@@ -23,10 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({origin:'http://localhost:3000', credentials: true}));
 
 app.use('/', indexRouter);
-app.use('/apartments',(req, res, next) => {
-    // res.cookie('my-cookie', JSON.stringify({userId: 1234, role:'user'}), {maxAge: -1});
-    next();
-}, apartmentsRouter);
+app.use('/apartments', apartmentsRouter);
+app.use('/addapartment', addapartmentRouter);
 app.use('/cities', citiesRouter);
 app.use('/countries', countriesRouter);
 app.use('/images', getImagesRouter);
