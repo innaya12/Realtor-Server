@@ -39,15 +39,3 @@ app.use('/signup', signupRouter);
 // }, apartmentsRouter);
 
 module.exports = app;
-
-
-
-
-
-
-
-// var usersRouter = require('./routes/usersExample');
-// var ordersRouter = require('./routes/ordersExample').router;
-
-// app.use('/users', usersRouter);
-// app.use('/orders', ordersRouter);
