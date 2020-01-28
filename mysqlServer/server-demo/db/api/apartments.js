@@ -29,7 +29,6 @@ function addImages(firstName, lastName,email, password, phone){
 
 function getAll({property_type,user_id, address, city_id, min_price, max_price, number_of_room, number_of_bath,sqft,sale_status, page = 1, size = 30}) {
     return new Promise((resolve, reject) => {
-        console.log("city id builder", city_id)
         const {query,params} = Builder.allApartments(page, size)
                                         .property_type(property_type)
                                         .user_id(user_id)
@@ -42,7 +41,6 @@ function getAll({property_type,user_id, address, city_id, min_price, max_price, 
                                         .sale_status(sale_status)
                                         .build();
         connection.query(query, [...params,page,size], (error, results, fields) => {
-            console.log("final query", query)
             if (error) {
                 reject(error);
                 return;
@@ -64,9 +62,23 @@ function byId(apartmentId) {
     });
 }
 
+function byUserId(userId) {
+    return new Promise((resolve, reject) => {
+        connection.query('Select * from apartments Where user_id = ?',[userId], (error, results, fields) => {
+            if (error) {
+                reject(error);
+                return;
+            }
+            resolve(results);
+        });
+    });
+}
+
+
 module.exports = {
     getAll,
     byId,
     addApartment,
-     addImages
+    addImages,
+    byUserId
 };

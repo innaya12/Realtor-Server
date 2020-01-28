@@ -21,11 +21,9 @@ function checkLogin(email, passwordHashed){
     return new Promise((resolve, reject) => {
             connection.query(loginQuery, [email, passwordHashed], (error, results) => {
             if (error) {
-                console.log("error", error)
                 reject(error);
                 return;
             }
-            console.log("results", results[0])
             resolve(results[0]);
         });
     });
