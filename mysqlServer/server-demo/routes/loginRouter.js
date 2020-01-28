@@ -14,7 +14,6 @@ router.post('/', async (req, res, next) => {
             let cryptPassword = crypto.pbkdf2Sync(password, 'realtorrocks', 100000, 64, 'sha512'); 
             const passwordHashed = cryptPassword.toString('base64');
             const user = await login.checkLogin(email, passwordHashed);
-            console.log("user", user)
             res.cookie('auth', JSON.stringify(user), {maxAge: 1000* 60* 60* 24* 7});
             res.status(200).json(user);
         }catch(error){

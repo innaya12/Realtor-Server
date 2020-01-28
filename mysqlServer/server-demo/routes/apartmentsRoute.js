@@ -3,10 +3,7 @@ var router = express.Router();
 const apartments = require('../db/api/apartments');
 const {isUser} = require('../middlewares/authentication');
 
-// const {isUser} = require('../middlewares/authentication');
-// router.get('/', isUser, function(req, res, next){
 router.get('/', function(req, res, next){
-    // console.log("req.cookies", req.cookies);    
     apartments.getAll(req.query)
     .then(apartment => res.status(200).json(apartment))
     .catch(error => res.status(500).json({error: error.message}))
@@ -24,8 +21,13 @@ router.get('/:apartmentId', function(req, res, next){
     .catch(error => res.status(500).json({error: error.message}))
 });
 
-router.post('/', function(req, res, next) {
-// router.post('/', isUser, function(req, res, next) {
+router.get('/:UserId', function(req, res, next){
+    apartments.byUserId(req.params.UserId)
+    .then(apartment => res.status(200).json(apartment))
+    .catch(error => res.status(500).json({error: error.message}))
+});
+// router.post('/', function(req, res, next) {
+router.post('/', isUser, function(req, res, next) {
         const {user_id, address, city_id, price, number_of_room, number_of_bath, sqft, description, main_image} = req.body;
         if(!user_id || !address || !city_id ||!price || !number_of_room || !number_of_bath || !sqft || !description || !main_image) {
             res.send('all fields are required');
