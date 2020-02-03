@@ -4,7 +4,6 @@ const crypto = require('crypto');
 var login = require('../db/api/login')
 
 router.post('/', async (req, res, next) => {
-    console.log("req.body",req.body)
     const {email , password} = req.body;
     if(!email || !password) {
         res.send('Email or password are required');
