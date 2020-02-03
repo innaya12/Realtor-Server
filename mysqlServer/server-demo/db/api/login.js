@@ -2,8 +2,6 @@ const connection = require('../config');
 const loginQuery = 'select * from users where email = ? and password = ?';
 const getUsersQuery = 'Select * from users';
 
-// currently not in use- saved for future development 
-
 function getAllUsers(){
     return new Promise((resolve, reject) => {
         connection.query(getUsersQuery ,(error, results, fields) => {
